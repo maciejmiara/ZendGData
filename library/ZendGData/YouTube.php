@@ -23,6 +23,7 @@ use Zend\Stdlib\ErrorHandler;
  */
 class YouTube extends Media
 {
+	const DEFAULT_MAJOR_PROTOCOL_VERSION = 2;
 
     const AUTH_SERVICE_NAME = 'youtube';
     const CLIENTLOGIN_URL = 'https://www.google.com/youtube/accounts/ClientLogin';
@@ -151,6 +152,17 @@ class YouTube extends Media
         $this->setHttpClient($client, $applicationId, $clientId, $developerKey);
     }
 
+	/**
+     * (non-PHPdoc)
+     * @see ZendGData.App::applyDefaults()
+     */
+
+    public function applyDefaults()
+    {
+        $this->setMajorProtocolVersion(self::DEFAULT_MAJOR_PROTOCOL_VERSION);
+        $this->setMinorProtocolVersion(self::DEFAULT_MINOR_PROTOCOL_VERSION);
+    }
+	
     /**
      * Set the Zend\Http\Client object used for communication
      *
